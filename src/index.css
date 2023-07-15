@@ -100,7 +100,7 @@
   right: 170px;
   color: blue;
 }
-#Error{
+.Error{
   position: absolute;
   text-align: center;
   bottom: 300px;
@@ -147,7 +147,7 @@
     font-size: 15px;
   }
   
-  #Error{
+  .Error{
     bottom: 380px;
     left: 80px;
     
@@ -155,29 +155,29 @@
   
 }
 
-@media (max-width:430px) {
+@media (max-width:380px) {
   #weather h1{
     font-size: 28px;
   }
   
   .h2{
-    margin: 20px 20px;
-    font-size: 14px;
+    margin: 20px 10px;
+    font-size: 12px;
   }  
   .h3{
-    font-size: 14.5px;
+    font-size: 12.5px;
   }
-  #Error{
-    left: 40px;
+  .Error{
+    left: 35px;
   }
   #globe{
-    top: 75px;
-    right: 125px;
+    top: 55px;
+    right: 105px;
     
    }
    #loc{
-     top: 18px;
-     right: 125px;
+     top: 15px;
+     right: 105px;
      color: blue;
    }
   

@@ -3,31 +3,24 @@ import { useEffect, useState } from "react";
 
 const Fetch = () => {
 
-    let [placeid,setplaceid]=useState("");
+    let[Error,setError]=useState("");
     let[loc,setloc]=useState("");
     let[Weather,setWeather]=useState("");
     let[TimeZone,setTimeZone]=useState("");
+    
 
    
    
-    useEffect(()=>{
-        const url = 'https://ai-weather-by-meteosource.p.rapidapi.com/find_places?text=fishermans%20wharf&language=en';
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': '0d3e4caab5mshacbbf35affb9268p15a58cjsn86e8310b55a3',
-                'X-RapidAPI-Host': 'ai-weather-by-meteosource.p.rapidapi.com'
-            }
-        };
-
-        
-       fetch(url,options)
-       .then((res)=>{return res.json()})
-       .then((data)=>{
-        setplaceid(data[0].place_id);})
-
-       
-        } ,[]);
+    // useEffect(()=>{
+    //     const url = 'https://ai-weather-by-meteosource.p.rapidapi.com/find_places?text=fishermans%20wharf&language=en';
+    //     const options = {
+    //         method: 'GET',
+    //         headers: {
+    //             'X-RapidAPI-Key': '0d3e4caab5mshacbbf35affb9268p15a58cjsn86e8310b55a3',
+    //             'X-RapidAPI-Host': 'ai-weather-by-meteosource.p.rapidapi.com'
+    //         }
+    //     };
+    // },[])
 
 
      let weather=()=>{
@@ -45,11 +38,12 @@ const Fetch = () => {
         .then((res)=>{
             return res.json()})
         .then((data)=>{
-            console.log(data);
+           // console.log(data.current);
             setTimeZone(data);
-            setWeather(data.current);})
-            
-  
+            setWeather(data.current);
+        })
+        .catch((err)=>{setError("Oops! Something Wrong...");})
+       
      }
      
 
@@ -62,7 +56,7 @@ const Fetch = () => {
          <button onClick={weather}  > Search </button>
          </div>
 
-         { Weather ? <div className="weatherDetails">
+         { Weather && <div className="weatherDetails">
             <div className="h2">
             <i ><svg  id="loc" xmlns="http://www.w3.org/2000/svg" width="35" height="29" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
   <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
@@ -73,13 +67,16 @@ const Fetch = () => {
             <h2> {Weather.icon}</h2>
             <h2>{Weather.summary}</h2>
             </div>
-            <div className="h3">
+           <div className="h3">
            <h3>Temperature : {Weather.temperature}</h3>
            <h3>Humidity : {Weather.humidity}</h3>
            <h3>Uv_index : {Weather.uv_index}</h3>
            <h3>Visibility : {Weather.visibility}</h3>
            </div>
-        </div>: <h1 id="Error" style={{color:"red"}}>Oops ! Something Wrong...</h1>}
+        </div>}
+        { Weather == undefined && <h1 className="Error" style={{color:"red"}}> No Data for your Search </h1>}
+         { Error && <h1 className="Error" style={{color:"red"}}> {Error} </h1>}
+        
         </div>
 
        
