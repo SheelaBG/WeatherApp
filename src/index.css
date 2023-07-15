@@ -162,22 +162,23 @@
   
   .h2{
     margin: 20px 10px;
-    font-size: 12px;
+    font-size: 11px;
   }  
   .h3{
     font-size: 12.5px;
+    margin: 27px 20px 20px 0px;
   }
   .Error{
     left: 35px;
   }
   #globe{
     top: 55px;
-    right: 105px;
+    right: 95px;
     
    }
    #loc{
      top: 15px;
-     right: 105px;
+     right: 95px;
      color: blue;
    }
   
